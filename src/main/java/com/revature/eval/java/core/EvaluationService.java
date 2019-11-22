@@ -14,8 +14,21 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String reverse(String string) {
+		String k=string;
+		 char[] x = new char[string.length()];
+		 int  count= string.length()-1;
+		for (int i=0;i<k.length(); i++)
+		{
+			x[i]=string.charAt(count);
+			count--;
+			
+		}
+		String str=new String(x);
+		System.out.println(x);
 		
-		return "";
+			return str;
+			
+			
 	}
 
 	/**
@@ -28,6 +41,12 @@ public class EvaluationService {
 	 */
 	public String acronym(String phrase) {
 		// TODO Write an implementation for this method declaration
+		 String str = "pharse";
+		 String[] arrOfStr = str.split("s");
+		 for (int i=0; i < str.length; i++) {
+				System.out.println("Str["+i+"]:"+str[i]);
+		
+		
 		return null;
 	}
 
