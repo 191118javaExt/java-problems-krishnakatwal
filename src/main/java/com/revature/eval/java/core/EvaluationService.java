@@ -241,8 +241,19 @@ public class EvaluationService {
 		 * NANP-countries, only 1 is considered a valid country code.
 		 */
 		public String cleanPhoneNumber(String string) {
-
-			return null;
+		
+		StringBuilder arr= new StringBuilder();
+		
+		for(int i=0;i<string.length();i++) {
+			if(Character.isDigit(string.charAt(i))){
+				arr.append(string.charAt(i));	
+			}
+		}
+		if(arr.charAt(0)=='1') {
+			arr=arr.delete(0, 1);
+		}
+		String num= arr.toString();
+			return num;
 		}
 
 		/**
