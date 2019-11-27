@@ -363,8 +363,8 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String toPigLatin(String string) {
-		String[] arr = string.split(" ");
-		for (int i = 0; i < arr.length; i++) {
+	String[] arr = string.split(" ");
+	for (int i = 0; i < arr.length; i++) {
 			StringBuilder sb = new StringBuilder(arr[i]);
 			while (sb.charAt(0) != ('a') && sb.charAt(0) != ('e') && sb.charAt(0) != ('i') && sb.charAt(0) != ('o')
 					&& sb.charAt(0) != ('u')) {
@@ -412,10 +412,22 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		// TODO Write an implementation for this method declaration
-		return false;
-	}
-
+		int digits = String.valueOf(input).length();
+        int sum = 0;
+        int value = input;
+        for(int i=1;i<=digits;i++) {
+            int digit = value%10;
+            value = value/10;
+            sum = sum + (int)Math.pow(digit,digits);
+        }
+        if(sum == input) {
+            return true;
+        }else {
+            return false;
+        }
+    }
+    
+		
 	/**
 	 * 10. Compute the prime factors of a given natural number.
 	 * 
