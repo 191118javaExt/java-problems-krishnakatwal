@@ -494,7 +494,8 @@ public class EvaluationService {
 		}
 
 		public String rotate(String string) {
-			// TODO Write an implementation for this method declaration
+
+			
 			return null;
 		}
 
@@ -620,6 +621,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
+
 		// TODO Write an implementation for this method declaration
 		return null;
 	}
