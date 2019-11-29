@@ -479,7 +479,7 @@ public class EvaluationServiceTest {
 	public void testEncodeOmgInCapital() {
 		assertEquals("lnt", EvaluationService.AtbashCipher.encode("OMG"));
 	}
-
+     
 	@Test
 	public void testEncodeMindBlowingly() {
 		assertEquals("nrmwy oldrm tob", EvaluationService.AtbashCipher.encode("mindblowingly"));

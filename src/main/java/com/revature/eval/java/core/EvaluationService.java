@@ -2,11 +2,15 @@ package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class EvaluationService {
+
+	private int count;
+	private String cardNo;
 
 	/**
 	 * 1. Without using the StringBuilder or StringBuffer class, write a method that
@@ -494,12 +498,31 @@ public class EvaluationService {
 		}
 
 		public String rotate(String string) {
-
-			
-			return null;
+			StringBuilder sb = new StringBuilder();
+			for(int i=0; i<string.length(); i++) {
+				char old = string.charAt(i);
+				int oldnum = old;
+				if(oldnum >= 65 && oldnum <=90) {		
+					oldnum += key;
+					if(oldnum >90) {
+						oldnum -= 26;
+					}
+					old = (char) oldnum;
+					} else if(oldnum >= 97 && oldnum <= 122) {
+						oldnum += key;
+						if(oldnum > 122) {
+							oldnum -= 26;
+						}
+						old = (char) oldnum;
+					}
+				sb.append(old);
+				
+					}
+		String rot = new String(sb);
+	         return rot;
 		}
-
 	}
+
 
 	/**
 	 * 12. Given a number n, determine what the nth prime is.
@@ -514,7 +537,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int calculateNthPrime(int i) {
-		// TODO Write an implementation for this method declaration
+	
 		return 0;
 	}
 
@@ -550,11 +573,56 @@ public class EvaluationService {
 		 * @param string
 		 * @return
 		 */
+		
+
+		public static boolean includes(String[] arr, String s) {
+			for(String s1 :arr) {
+				if(s.equals(s1)) {
+					return true;
+				}
+			}
+			// TODO Auto-generated method stub
+			return false;
+		}
+		
 		public static String encode(String string) {
 			// TODO Write an implementation for this method declaration
-			return null;
+			if(string.contains("."))
+				string=string.replace(".", "");
+			if(string.contains(","))
+				string=string.replace("," , "");
+			if(string.contains(" "))
+				string=string.replace(" ","");
+			String[] arr ="abcdefghijklmnopqrstuvwxyz".split("");
+			String ans= "";
+			for (int i=0; i< string.length(); i++) {
+				char ch = string.charAt(i);
+				String s = Character.toString(ch).toLowerCase();
+				if(includes(arr,s)) {
+					int idx = Arrays.asList(arr).indexOf(s);
+					int newIdx = (arr.length - idx - 1);
+					ans += arr[newIdx];
+					}
+			else {
+				ans += s;
+			    }
+			}
+			String result = "";
+			for(int i=0; i<ans.length();i++) {
+				char ch = ans.charAt(i);
+				String s = Character.toString(ch);
+				if ((i>0) & i % 5 == 0) {
+					result += ""+s;
+				}
+				else {
+					result += s;
+						
+				}
+			}
+			
+		   return result;
 		}
-
+	
 		/**
 		 * Question 14
 		 * 
@@ -563,10 +631,30 @@ public class EvaluationService {
 		 */
 		public static String decode(String string) {
 			// TODO Write an implementation for this method declaration
-			return null;
+			if (string.contains(" "))
+				string =string.replace(" ", "");
+			String[] arr= "abcdefghijklmnopqrstuvwxyz".split("");
+			String ans="";
+			for(int i=0; i<string.length();i++) {
+				char ch = string.charAt(i);
+				String s = Character.toString(ch).toLowerCase();
+				if(includes(arr,s)) {
+					int idx = Arrays.asList(arr).indexOf(s);
+					int newIdx =(arr.length - idx - 1);
+					ans += arr[newIdx];
+					}
+				else {
+					ans += s;
+				}
+			}
+				
+			return ans;
+		 }
 		}
-	}
 
+		
+	
+	
 	/**
 	 * 15. The ISBN-10 verification process is used to validate book identification
 	 * numbers. These normally contain dashes and look like: 3-598-21508-8
@@ -624,7 +712,7 @@ public class EvaluationService {
 
 		// TODO Write an implementation for this method declaration
 		return null;
-	}
+	 }
 
 	/**
 	 * 18. Given a number, find the sum of all the unique multiples of particular
@@ -643,6 +731,7 @@ public class EvaluationService {
 		// TODO Write an implementation for this method declaration
 		return 0;
 	}
+
 
 	/**
 	 * 19. Given a number determine whether or not it is valid per the Luhn formula.
@@ -681,9 +770,32 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isLuhnValid(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		//StringBuilder sb= new StringBuilder();
+		//int nDigits = cardNo.length(); 
+		  
+	    //int nSum = 0; 
+	    //boolean isSecond = false; 
+	    //for (int i = nDigits - 1; i >= 0; i--)  
+	    //{ 
+	  
+	      //  int d = cardNo.charAt(i) - '0'; 
+	  
+	        //if (isSecond == true) {
+	          //  d = d * 2; 
+	  
+	        // We add two digits to handle 
+	        // cases that make two digits  
+	        // after doubling 
+	        //nSum += d / 10; 
+	        //nSum += d % 10; 
+	  
+	        //isSecond = !isSecond; 
+	    //} 
+	    //return (nSum % 10 == 0); 
+	//}
+		return false; 
 	}
+
 
 	/**
 	 * 20. Parse and evaluate simple math word problems returning the answer as an
@@ -713,6 +825,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int solveWordProblem(String string) {
-		return 0;
+		
+	return 0;
+   }
 	}
-}
