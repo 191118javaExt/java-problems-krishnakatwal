@@ -1,17 +1,14 @@
 package com.revature.eval.java.core;
-
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class EvaluationService {
-
-	private int count;
-	private String cardNo;
-
 	/**
 	 * 1. Without using the StringBuilder or StringBuffer class, write a method that
 	 * reverses a String. Example: reverse("example"); -> "elpmaxe"
@@ -164,9 +161,9 @@ public class EvaluationService {
 		char[] twoPt = { 'D', 'G' };
 		char[] threePt = { 'B', 'C', 'M', 'P' };
 		char[] fourPt = { 'F', 'H', 'V', 'W', 'Y' };
-		char[] fivePt = { 'k' };
-		char[] eightPt = { 'J', 'x' };
-		char[] tenPt = { 'z' };
+		char[] fivePt = { 'K' };
+		char[] eightPt = { 'J', 'X' };
+		char[] tenPt = {'Q','Z' };
 
 		int score = 0;
 		string = string.toUpperCase();
@@ -331,7 +328,7 @@ public class EvaluationService {
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
-			// TODO Write an implementation for this method declaration
+			
 			return 0;
 		}
 
@@ -537,8 +534,23 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int calculateNthPrime(int i) {
-	
-		return 0;
+		int num, count;
+	    num=1;
+	    count=0;
+	    int nth = 0;
+		while (count < nth){
+	        num=num+1;
+	        for (i = 2; i <= num; i++){ //Here we will loop from 2 to num
+	          if (num % i == 0) {
+	            break;
+	          }
+	        }
+	        if ( i == num){//if it is a prime number
+	          count = count+1;
+	        }
+	      }
+	      //System.out.println("Value of nth prime: " + num);
+	return count;
 	}
 
 	/**
@@ -573,8 +585,7 @@ public class EvaluationService {
 		 * @param string
 		 * @return
 		 */
-		
-
+	
 		public static boolean includes(String[] arr, String s) {
 			for(String s1 :arr) {
 				if(s.equals(s1)) {
@@ -586,7 +597,7 @@ public class EvaluationService {
 		}
 		
 		public static String encode(String string) {
-			// TODO Write an implementation for this method declaration
+		
 			if(string.contains("."))
 				string=string.replace(".", "");
 			if(string.contains(","))
@@ -630,7 +641,7 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String decode(String string) {
-			// TODO Write an implementation for this method declaration
+		
 			if (string.contains(" "))
 				string =string.replace(" ", "");
 			String[] arr= "abcdefghijklmnopqrstuvwxyz".split("");
@@ -677,8 +688,38 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
+	@SuppressWarnings("unused")
 	public boolean isValidIsbn(String string) {
 		// TODO Write an implementation for this method declaration
+		string = string.replace("-","");
+		String[] arr = string.split("");
+		String lastEle = arr[arr.length-1];
+		if(!isNumeric(lastEle)) {
+			if(!lastEle.equals("x")) {
+			return false;		
+		}
+	}
+	int i = 10;
+	int  sum = 0;
+	for(int k =0; k < arr.length -1;k++) {
+		String s= arr[k];
+		if(!isNumeric(s)) {
+			return false;	
+		}
+		int j = Integer.parseInt(s);
+		sum += j * i;
+		i--;
+	}
+	if(lastEle.equals("x")) {
+		sum += 10;
+	}else {
+		return true;
+	}
+	return false;
+	}
+
+	private boolean isNumeric(String lastEle) {
+		// TODO Auto-generated method stub
 		return false;
 	}
 
@@ -697,7 +738,18 @@ public class EvaluationService {
 	 */
 	public boolean isPangram(String string) {
 		// TODO Write an implementation for this method declaration
+		if(string.length()==0)
 		return false;
+		if(string.contains(""))
+			string = string.replace(" ","");
+		Set<String> set = new HashSet<>();
+		for(int i= 0;i < string.length(); i++) {
+			String s = Character.toString(string.charAt(i));
+			set.add(s);
+			}
+		return set.size()==26;
+		
+		
 	}
 
 	/**
@@ -729,7 +781,22 @@ public class EvaluationService {
 	 */
 	public int getSumOfMultiples(int i, int[] set) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		Set<Integer> hset = new HashSet<>();
+		for(int n :set) {
+			int j = 1;
+			while(n * j < i) {
+				hset.add(n*j);
+				j++;
+				
+			}
+		}
+		int sum = 0;
+		for(int k : hset) {
+			sum += k;
+			
+		}
+		
+		return sum ;
 	}
 
 
@@ -770,31 +837,55 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isLuhnValid(String string) {
-		//StringBuilder sb= new StringBuilder();
-		//int nDigits = cardNo.length(); 
-		  
-	    //int nSum = 0; 
-	    //boolean isSecond = false; 
-	    //for (int i = nDigits - 1; i >= 0; i--)  
-	    //{ 
-	  
-	      //  int d = cardNo.charAt(i) - '0'; 
-	  
-	        //if (isSecond == true) {
-	          //  d = d * 2; 
-	  
-	        // We add two digits to handle 
-	        // cases that make two digits  
-	        // after doubling 
-	        //nSum += d / 10; 
-	        //nSum += d % 10; 
-	  
-	        //isSecond = !isSecond; 
-	    //} 
-	    //return (nSum % 10 == 0); 
-	//}
-		return false; 
-	}
+			// return value and stringbuilder
+			StringBuilder sb = new StringBuilder();
+			boolean luhn = false;
+			// populate sb with only numbers
+			for (int i = 0; i < string.length(); i++) {
+				if (Character.isDigit(string.charAt(i))) {
+					sb.append(string.charAt(i));
+				}
+			}
+			// multiplication of second value and length check.
+			if (sb.length() < 2) {
+				luhn = false;
+			} else {
+				for (int i = 0; i < (sb.length() - 1); i++) {
+					i++;
+					int x = Character.getNumericValue(sb.charAt(i));
+					x *= 2;
+					if (x > 9) {
+						x -= 9;
+					}
+					// System.out.println((char)(x+48)); +48 do to ASCII.
+					sb.setCharAt(i, (char) (x + 48));
+				}
+				// get a total and see if divisible by 10
+				int total = 0;
+				// System.out.println(sb);
+				for (int i = 0; i < sb.length(); i++) {
+					total += Character.getNumericValue(sb.charAt(i));
+				}
+				if (total % 10 == 0) {
+					luhn = true;
+				} else {
+					luhn = false;
+				}
+				// System.out.println(total);
+			}
+			// check for illegal characters
+			String[] sa = string.split(" ");
+			for (int i = 0; i < sa.length; i++) {
+				for (int x = 0; x < sa[i].length(); x++) {
+					if (Character.getNumericValue(sa[i].charAt(x)) > 9 || Character.getNumericValue(sa[i].charAt(x)) < 0) {
+						luhn = false;
+					}
+				}
+			}
+			// return statement
+			return luhn;
+		}
+
 
 
 	/**
@@ -824,8 +915,53 @@ public class EvaluationService {
 	 * @param string
 	 * @return
 	 */
-	public int solveWordProblem(String string) {
+	public int[] isNum(String s) {
+		String [] arr =      s.split(" ");
+		int [] ans = new int[2];
+		int j = 0;
+		for(int i = 0; i<arr.length; i++) {
+			if(isNumeric(arr[i])) {
+				ans[j]= Integer.parseInt(arr[i]);
+				j++;
+			
+			}
+		}
 		
-	return 0;
+	return ans;
    }
-	}
+        public int solveWordProblem(String string) {
+        	if(string.contains("?")) 
+        		string = string.replace("?","");
+        	Set<String> set = new HashSet<>();
+        	set.add("plus");
+        	set.add("minus");
+        	set.add("multiply");
+        	set.add("divide");
+        	String[] s = string.split(" ");
+        	String check = "";
+        	for(String s1: s) {
+        		if(set.contains(s1)) {
+        			check += s1;
+        			
+        		}
+        	}
+        	int [] values = isNum(string);
+        	
+        	switch(check) {
+        	case "plus":
+        	return values[0] + values[1];
+        	case "minus":
+        	return values[0] - values[1];
+        	case "multiply":
+        		return values[0] / values[1];
+        	case "divide":
+        		return values[0] * values[1];
+        		default:
+        			return -1;
+        	   }
+        	}
+        }
+      
+
+        
+	
